@@ -3,3 +3,14 @@
 Формат входных данных: Два целых числа по модулю не больше 100 
 Формат результата: Сумма квадратов от первого введенного числа до второго
 '''
+a = abs(int(input('введите a от -100 до 100')))
+b = abs(int(input('введите b от -100 до 100')))
+
+result = 0
+if a >= b:
+  for i in range(b, a + 1):
+    result = result + i*i
+else:
+  for i in range(a, b + 1):
+    result = result + i*i
+print(result)
