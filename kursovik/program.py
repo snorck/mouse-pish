@@ -39,12 +39,22 @@ def main_program():
                 error_count += 1
                 #считаем сумму температур по каждому месяцу и количество измерений и заносим в 2 множетсва
             else:
+
                 if row[0].split(';')[1] not in month_temp_set:
                     month_temp_set[row[0].split(';')[1]] = int(row[0].split(';')[5])
                     month_measure_cout_set[row[0].split(';')[1]] = 1
+                    month_min_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
+                    month_max_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
                 else:
                     month_temp_set[row[0].split(';')[1]] += int(row[0].split(';')[5])
                     month_measure_cout_set[row[0].split(';')[1]] += 1
+
+                    if int(row[0].split(';')[5]) < month_min_temp[row[0].split(';')[1]]:
+                        month_min_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
+
+                    if int(row[0].split(';')[5]) > month_max_temp[row[0].split(';')[1]]:
+                        month_max_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
+
              
     print(month_temp_set)
     print(month_measure_cout_set)
@@ -54,6 +64,8 @@ def main_program():
         month_avg_set[month] = round(month_temp_set[month] / month_measure_cout_set[month])     
         
     print(month_avg_set)
+    print(month_min_temp)
+    print(month_max_temp)
 
 if sys.argv[1:] != []:
     match sys.argv[1]:
