@@ -101,11 +101,3 @@ if sys.argv[1:] != []:
             main_program()
 else: 
     main_program()
-
-
-
-
-"""with open('data.csv', 'r') as file:
-    reader = csv.reader(file)
-    for row in reader:
-        print(row)"""
