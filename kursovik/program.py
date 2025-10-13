@@ -28,12 +28,14 @@ def main_program():
     month_avg_set = {}
     month_min_temp = {}
     month_max_temp = {}
-    with open('temperature_small.csv', 'r') as file:
+    with open('temperature_big.csv', 'r') as file:
         reader = csv.reader(file)
         row_num = 0
         error_count = 0
         for row in reader:
             row_num += 1
+            row[0] = row[0].replace(' ', '0')
+            
             try:
                 int(row[0].split(';')[5])
             except ValueError:
