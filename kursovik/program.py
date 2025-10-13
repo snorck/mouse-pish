@@ -37,28 +37,30 @@ def main_program():
                 print('Ошибка в строке', row_num, row[0])
                 print('не используем при расчете')
                 error_count += 1
-                #считаем сумму температур по каждому месяцу и количество измерений и заносим в 2 множетсва
+                
             else:
 
                 if row[0].split(';')[1] not in month_temp_set:
+                    #добавляем новые месяцы в множества и задаем начальные значения
                     month_temp_set[row[0].split(';')[1]] = int(row[0].split(';')[5])
                     month_measure_cout_set[row[0].split(';')[1]] = 1
                     month_min_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
                     month_max_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
                 else:
+                    #считаем сумму температур по каждому месяцу и количество измерений и заносим в 2 множетсва
                     month_temp_set[row[0].split(';')[1]] += int(row[0].split(';')[5])
                     month_measure_cout_set[row[0].split(';')[1]] += 1
-
+                    #считаем минимальнгую температуры в каждом месяце
                     if int(row[0].split(';')[5]) < month_min_temp[row[0].split(';')[1]]:
                         month_min_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
-
+                    #считаем максимальную температуры в каждом месяце
                     if int(row[0].split(';')[5]) > month_max_temp[row[0].split(';')[1]]:
                         month_max_temp[row[0].split(';')[1]] = int(row[0].split(';')[5])
 
              
     print(month_temp_set)
     print(month_measure_cout_set)
-    month_avg_set = {}
+    
     #сичтаем среднее значение температуры по каждому месяцу заносим в set 
     for month in month_temp_set:
         month_avg_set[month] = round(month_temp_set[month] / month_measure_cout_set[month])     
