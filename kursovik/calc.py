@@ -104,7 +104,6 @@ def main_program(filename, target_month=None):
             print('Максимальная температура:', month_max_temp[target_month])
         else:
             print(f"Месяц {target_month} не найден в данных")
-        return
 
     # Полная годовая статистика
     # Инициализация переменных для годовой статистики
