@@ -98,12 +98,13 @@ def main_program(filename, target_month=None):
     # Если указан конкретный месяц, выводим только его статистику
     if target_month:
         if target_month in month_name_set:
-            print(f"Статистика за {month_name_set[target_month]}:")
+            print('Статистика за', month_name_set[target_month])
             print('Среднемесячная температура:', month_avg_set[target_month])
             print('Минимальная температура:', month_min_temp[target_month])
             print('Максимальная температура:', month_max_temp[target_month])
         else:
             print(f"Месяц {target_month} не найден в данных")
+        return
 
     # Полная годовая статистика
     # Инициализация переменных для годовой статистики
@@ -144,25 +145,24 @@ def main_program(filename, target_month=None):
     print('Максимальная температура за год:', year_max_temp)
 
 # Обработка аргументов командной строки через argparse
-if __name__ == "__main__":
-    # Создание парсера аргументов командной строки
-    parser = argparse.ArgumentParser(description='Обработка данных о температуре из CSV файла')
-    # Добавление аргумента для указания файла (обязательный)
-    parser.add_argument('-f', '--file', required=True, help='Входной файл CSV для обработки')
-    # Добавление аргумента для указания месяца (опциональный)
-    parser.add_argument('-m', '--month', help='Статистика за указанный месяц (01-12)')
+# Создание парсера аргументов командной строки
+parser = argparse.ArgumentParser(description='Обработка данных о температуре из CSV файла')
+# Добавление аргумента для указания файла (обязательный)
+parser.add_argument('-f', '--file', required=True, help='Входной файл CSV для обработки')
+# Добавление аргумента для указания месяца (опциональный)
+parser.add_argument('-m', '--month', help='Статистика за указанный месяц (01-12)')
     
-    # Парсинг аргументов командной строки
-    args = parser.parse_args()
+# Парсинг аргументов командной строки
+args = parser.parse_args()
     
-    # Форматируем номер месяца к двузначному формату если нужно
-    if args.month:
-        if len(args.month) == 1:
-            target_month = '0' + args.month
-        else:
-            target_month = args.month
+# Форматируем номер месяца к двузначному формату если нужно
+if args.month:
+    if len(args.month) == 1:
+        target_month = '0' + args.month
     else:
-        target_month = None
+        target_month = args.month
+else:
+    target_month = None
     
-    # Вызов основной программы с переданными аргументами
-    main_program(args.file, target_month)
+# Вызов основной программы с переданными аргументами
+main_program(args.file, target_month)
