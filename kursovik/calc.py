@@ -1,5 +1,4 @@
 import csv
-import sys
 import argparse
 
 # Многострочная строка с описанием программы
